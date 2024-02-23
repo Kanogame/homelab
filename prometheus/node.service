@@ -1,0 +1,9 @@
+[Unit]
+Description=Start prometheus monitoring node
+Before=docker.service
+
+[Service]
+ExecStart=/root/node/node_exporter
+
+[Install]
+WantedBy=multi-user.target
