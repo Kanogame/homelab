@@ -1,0 +1,2 @@
+- move grafana to dir
+- add monitoring options for homepage
