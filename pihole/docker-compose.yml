@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "7080:80/tcp"
+    environment:
+      TZ: Asia/Novosibirsk
+      WEBPASSWORD: testpass
+    volumes:
+      - ./pihole:/etc/pihole
+      - ./dnsmasq.d:/etc/dnsmasq.d
+    restart: unless-stopped
+    expose:
+      - 80
+
+  pihole-exporter:
+    container_name: pihole_monitoring
+    image: ekofr/pihole-exporter:latest
+    environment: 
+      - PIHOLE_HOSTNAME=pihole
+      - PIHOLE_PASSWORD=testpass
+      - PORT=9617
+    ports:
+      - "9617:9617"
+    expose:
+      - 9617
