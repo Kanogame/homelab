@@ -1,2 +1,4 @@
 - move grafana to dir
 - add monitoring options for homepage
+- zeroTier
+- move pihole to docker container
